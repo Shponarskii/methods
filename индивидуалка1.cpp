@@ -70,7 +70,7 @@ int LU(double** &l, double** &u, double** a, int n)
                 s2 += l[i][k] * u[k][j1];
             if (l[i][i] == 0)
             {
-                cout << "Ðàçëîæåíèå ìàòðèöû íåâîçìîæíî èëè ìàòðèöà âûðîæäåííà";
+                cout << "Ð Ð°Ð·Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½ÐµÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð¸Ð»Ð¸ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ð° Ð²Ñ‹Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð½Ð°";
                 return -1;
             }
             u[i][j1] = (a[i][j1] - s2) / l[i][i];
@@ -97,10 +97,10 @@ int main()
     int flag = LU(L, U, A, size);
     if (flag == 1)
     {
-        cout << "Ìàòðèöà L:" << endl;
+        cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° L:" << endl;
         printM(L, size);
         cout << endl;
-        cout << "Ìàòðèöà U:" << endl;
+        cout << "ÐœÐ°Ñ‚Ñ€Ð¸Ñ†Ð° U:" << endl;
         printM(U, size);
         cout << endl;
         double* b = new double[size];
@@ -119,7 +119,7 @@ int main()
                 r += U[i][k] * x[k];
             x[i] = b[i] - r;
         }
-        cout << "Ðåøåíèå:" << endl;
+        cout << "Ð ÐµÑˆÐµÐ½Ð¸Ðµ:" << endl;
         printA(x, size);
     }
     return 0;
