@@ -43,13 +43,13 @@ void printA(double* a, int n)
         cout << a[i] << " ";
     cout << std::endl;
 }
-void t(double** &c, int n)
+void t(double**& c, int n)
 {
     c = new double* [n];
     for (int i = 0; i < n; i++)
         c[i] = new double[n];
 }
-int LU(double** &l, double** &u, double** a, int n)
+int LU(double**& l, double**& u, double** a, int n)
 {
     int i = 0, j = 0;
     while (i < n)
@@ -69,10 +69,7 @@ int LU(double** &l, double** &u, double** a, int n)
             for (int k = 0; k < i; k++)
                 s2 += l[i][k] * u[k][j1];
             if (l[i][i] == 0)
-            {
-                cout << "Разложение невозможно или матрица вырожденна";
                 return -1;
-            }
             u[i][j1] = (a[i][j1] - s2) / l[i][i];
         }
         i++;
@@ -95,7 +92,7 @@ int main()
     double* y = new double[size];
     readfile(A, y, size);
     int flag = LU(L, U, A, size);
-    if (flag == 1)
+    if (flag == 1 && L[size - 1][size - 1] != 0)
     {
         cout << "Матрица L:" << endl;
         printM(L, size);
@@ -122,5 +119,6 @@ int main()
         cout << "Решение:" << endl;
         printA(x, size);
     }
+    else cout << "Разложение невозможно или матрица вырожденна" << endl;
     return 0;
 }
