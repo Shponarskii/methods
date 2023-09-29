@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
+const double accur = 1e-6;
 
 int sizeM()
 {
@@ -50,7 +51,6 @@ void printA(double* a, int n)
 double* S(double** a, double* y, int n)
 {
     double* x = new double[n];
-    const double accur = 1e-6;
     double max;
     int k = 0, index;
     while (k < n)
@@ -65,7 +65,7 @@ double* S(double** a, double* y, int n)
             }
         if (max < accur)
         {
-            cout << "Ð ÐµÑˆÐµÐ½Ð¸Ðµ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð½Ð°Ð¹Ð´ÐµÐ½Ð¾ Ð¸Ð·-Ð·Ð° Ð½ÑƒÐ»ÐµÐ²Ð¾Ð³Ð¾ ÑÑ‚Ð¾Ð»Ð±Ñ†Ð°";
+            cout << "Ðåøåíèå íå ìîæåò áûòü íàéäåíî èç-çà íóëåâîãî ñòîëáöà";
             return nullptr;
         }
         swap(a[k], a[index]);
@@ -142,21 +142,22 @@ int main()
     for (int i = 0; i < size; i++)
         b[i] = h[0] * c[i] / 2 - h[i] * h[i] * d[i] / 6 + (f[i + 1] - f[i]) / h[i];
 
-    for (int i = 1; i < size + 1; i++)
-        cout << a[i] << ' ';
-    cout << endl;
-    printA(b, size);
-    for (int i = 0; i < size; i++)
-        cout << c[i] / 2 << ' ';
-    cout << endl;
-    for (int i = 0; i < size; i++)
-        cout << d[i] / 6 << ' ';
-    cout << endl;
+    //for (int i = 1; i < size + 1; i++)
+    //    cout << a[i] << ' ';
+    //cout << endl;
+    //printA(b, size);
+    //for (int i = 0; i < size; i++)
+    //    cout << c[i] / 2 << ' ';
+    //cout << endl;
+    //for (int i = 0; i < size; i++)
+    //    cout << d[i] / 6 << ' ';
+    //cout << endl;
 
-    cout << endl;
+    //cout << endl;
+    int n = 10;
     cout << x[0] << ' ' << a[0] << endl;
     for (int i = 0; i < size; i++)
-        for (double l = x[i] + h[i] / 4; l <= x[i + 1]; l += h[i] / 4)
+        for (double l = x[i] + h[i] / n; l <= x[i + 1] + accur; l += h[i] / n)
         {
             cout << l << ' ' << a[i + 1] + b[i] * (l - x[i + 1]) + c[i] * (l - x[i + 1]) * (l - x[i + 1]) / 2 + d[i] * (l - x[i + 1]) * (l - x[i + 1]) * (l - x[i + 1]) / 6;
             cout << endl;
